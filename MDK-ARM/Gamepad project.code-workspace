@@ -1,0 +1,24 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "usbd_customhid.h": "c",
+            "usbd_ioreq.h": "c",
+            "stdio.h": "c",
+            "usb_device.h": "c",
+            "gpio.h": "c",
+            "stdbool.h": "c",
+            "usbd_custom_hid_if.h": "c",
+            "stm32f1xx_hal.h": "c",
+            "remote_adc.h": "c",
+            "string.h": "c",
+            "block.h": "c",
+            "led.h": "c"
+        }
+    },
+    "extensions": {}
+}
