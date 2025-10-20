@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../HDL;../Middleware;../ApplicationLayer;../HDL/Beep;../HDL/Key;../HDL/LED;../HDL/OLED;../HDL/Remote_ADC;../Middleware/LOGO;../Middleware/Yu_UI;../HDL/OLED/Driver/Hardware_Driver;../HDL/OLED/Driver/Software_Driver;../USB_DEVICE/App;../USB_DEVICE/Target;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../HDL;../Middleware;../ApplicationLayer;../HDL/Beep;../HDL/Key;../HDL/LED;../HDL/OLED;../HDL/Remote_ADC;../HDL/OLED/Driver/Hardware_Driver;../HDL/OLED/Driver/Software_Driver;../USB_DEVICE/App;../USB_DEVICE/Target;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc;../HDL/Nrf24l01;..\Middleware\My_OLED_Dis;..\My_Middleware\Menu_UI;..\My_Middleware\LOGO;..\My_Middleware\My_OLED_Dis</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -934,55 +934,85 @@
               <FileType>5</FileType>
               <FilePath>..\HDL\OLED\Driver\Hardware_Driver\OLED_driver.h</FilePath>
             </File>
+            <File>
+              <FileName>nrf24l01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HDL\Nrf24l01\nrf24l01.c</FilePath>
+            </File>
+            <File>
+              <FileName>nrf24l01.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\HDL\Nrf24l01\nrf24l01.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>Middleware</GroupName>
+          <GroupName>Menu_UI</GroupName>
           <Files>
             <File>
               <FileName>Block.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middleware\Yu_UI\Block.c</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\Block.c</FilePath>
             </File>
             <File>
               <FileName>Block.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Middleware\Yu_UI\Block.h</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\Block.h</FilePath>
             </File>
             <File>
               <FileName>MenuCore.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middleware\Yu_UI\MenuCore.c</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\MenuCore.c</FilePath>
             </File>
             <File>
               <FileName>MenuCore.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Middleware\Yu_UI\MenuCore.h</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\MenuCore.h</FilePath>
             </File>
             <File>
               <FileName>MenuSelector.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middleware\Yu_UI\MenuSelector.c</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\MenuSelector.c</FilePath>
             </File>
             <File>
               <FileName>MenuSelector.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Middleware\Yu_UI\MenuSelector.h</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\MenuSelector.h</FilePath>
             </File>
             <File>
               <FileName>MenuSetting.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middleware\Yu_UI\MenuSetting.c</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\MenuSetting.c</FilePath>
             </File>
             <File>
               <FileName>MenuSetting.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Middleware\Yu_UI\MenuSetting.h</FilePath>
+              <FilePath>..\My_Middleware\Menu_UI\MenuSetting.h</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>My_OLED_Dis</GroupName>
+          <Files>
+            <File>
+              <FileName>My_Display.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\My_Middleware\My_OLED_Dis\My_Display.c</FilePath>
+            </File>
+            <File>
+              <FileName>My_Display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\My_Middleware\My_OLED_Dis\My_Display.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>LOGO</GroupName>
+          <Files>
             <File>
               <FileName>XY_LOGO_Font.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Middleware\LOGO\XY_LOGO_Font.h</FilePath>
+              <FilePath>..\My_Middleware\LOGO\XY_LOGO_Font.h</FilePath>
             </File>
           </Files>
         </Group>

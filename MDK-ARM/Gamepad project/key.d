@@ -39,8 +39,8 @@
 .\gamepad project\key.o: ../HDL/LED/led.h
 .\gamepad project\key.o: ../Core/Inc/gpio.h
 .\gamepad project\key.o: ../HDL/Beep/Beep.h
-.\gamepad project\key.o: ../Middleware/Yu_UI/MenuSelector.h
-.\gamepad project\key.o: ../Middleware/Yu_UI/MenuSetting.h
-.\gamepad project\key.o: ../Middleware/Yu_UI/MenuCore.h
-.\gamepad project\key.o: ../Middleware/Yu_UI/Block.h
-.\gamepad project\key.o: ../Middleware/Yu_UI/MenuSelector.h
+.\gamepad project\key.o: ..\My_Middleware\Menu_UI\MenuSelector.h
+.\gamepad project\key.o: ..\My_Middleware\Menu_UI\MenuSetting.h
+.\gamepad project\key.o: ..\My_Middleware\Menu_UI\MenuCore.h
+.\gamepad project\key.o: ..\My_Middleware\Menu_UI\Block.h
+.\gamepad project\key.o: ..\My_Middleware\Menu_UI\MenuSelector.h

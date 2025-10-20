@@ -90,18 +90,28 @@ virtualFolder:
         - path: ../HDL/OLED/Driver/Software_Driver/OLED_Fonts.h
         - path: ../HDL/OLED/Driver/Hardware_Driver/OLED_driver.c
         - path: ../HDL/OLED/Driver/Hardware_Driver/OLED_driver.h
+        - path: ../HDL/Nrf24l01/nrf24l01.c
+        - path: ../HDL/Nrf24l01/nrf24l01.h
       folders: []
-    - name: My_Middleware
+    - name: Menu_UI
       files:
-        - path: ../Middleware/Yu_UI/Block.c
-        - path: ../Middleware/Yu_UI/Block.h
-        - path: ../Middleware/Yu_UI/MenuCore.c
-        - path: ../Middleware/Yu_UI/MenuCore.h
-        - path: ../Middleware/Yu_UI/MenuSelector.c
-        - path: ../Middleware/Yu_UI/MenuSelector.h
-        - path: ../Middleware/Yu_UI/MenuSetting.c
-        - path: ../Middleware/Yu_UI/MenuSetting.h
-        - path: ../Middleware/LOGO/XY_LOGO_Font.h
+        - path: ../My_Middleware/Menu_UI/Block.c
+        - path: ../My_Middleware/Menu_UI/Block.h
+        - path: ../My_Middleware/Menu_UI/MenuCore.c
+        - path: ../My_Middleware/Menu_UI/MenuCore.h
+        - path: ../My_Middleware/Menu_UI/MenuSelector.c
+        - path: ../My_Middleware/Menu_UI/MenuSelector.h
+        - path: ../My_Middleware/Menu_UI/MenuSetting.c
+        - path: ../My_Middleware/Menu_UI/MenuSetting.h
+      folders: []
+    - name: My_OLED_Dis
+      files:
+        - path: ../My_Middleware/My_OLED_Dis/My_Display.c
+        - path: ../My_Middleware/My_OLED_Dis/My_Display.h
+      folders: []
+    - name: LOGO
+      files:
+        - path: ../My_Middleware/LOGO/XY_LOGO_Font.h
       folders: []
     - name: Application Layer
       files: []
@@ -143,14 +153,17 @@ targets:
         - ../HDL/LED
         - ../HDL/OLED
         - ../HDL/Remote_ADC
-        - ../Middleware/LOGO
-        - ../Middleware/Yu_UI
         - ../HDL/OLED/Driver/Hardware_Driver
         - ../HDL/OLED/Driver/Software_Driver
         - ../USB_DEVICE/App
         - ../USB_DEVICE/Target
         - ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc
         - ../Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc
+        - ../HDL/Nrf24l01
+        - ../Middleware/My_OLED_Dis
+        - ../My_Middleware/Menu_UI
+        - ../My_Middleware/LOGO
+        - ../My_Middleware/My_OLED_Dis
         - .cmsis/include
         - RTE/_Gamepad project
       libList: []

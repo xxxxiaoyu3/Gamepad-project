@@ -51,8 +51,11 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, IIC_SCL_Pin|IIC_SDA_Pin|LED1_Out_Pin|LED2_Out_Pin
-                          |LED3_Out_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(SPI_CSN_GPIO_Port, SPI_CSN_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, SPI_CE_Pin|IIC_SCL_Pin|IIC_SDA_Pin|LED1_Out_Pin
+                          |LED2_Out_Pin|LED3_Out_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(Beep_Output_GPIO_Port, Beep_Output_Pin, GPIO_PIN_RESET);
@@ -62,6 +65,28 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(KEY1_Input_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SPI_CSN_Pin */
+  GPIO_InitStruct.Pin = SPI_CSN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(SPI_CSN_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SPI_IRQ_Pin */
+  GPIO_InitStruct.Pin = SPI_IRQ_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(SPI_IRQ_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SPI_CE_Pin Beep_Output_Pin LED1_Out_Pin LED2_Out_Pin
+                           LED3_Out_Pin */
+  GPIO_InitStruct.Pin = SPI_CE_Pin|Beep_Output_Pin|LED1_Out_Pin|LED2_Out_Pin
+                          |LED3_Out_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : KEY2_Input_Pin KEY3_Input_Pin KEY6_Input_Pin KEY5_Input_Pin */
   GPIO_InitStruct.Pin = KEY2_Input_Pin|KEY3_Input_Pin|KEY6_Input_Pin|KEY5_Input_Pin;
@@ -81,13 +106,6 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(KEY4_Input_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Beep_Output_Pin LED1_Out_Pin LED2_Out_Pin LED3_Out_Pin */
-  GPIO_InitStruct.Pin = Beep_Output_Pin|LED1_Out_Pin|LED2_Out_Pin|LED3_Out_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 

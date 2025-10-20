@@ -59,6 +59,12 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define KEY1_Input_Pin GPIO_PIN_13
 #define KEY1_Input_GPIO_Port GPIOC
+#define SPI_CSN_Pin GPIO_PIN_4
+#define SPI_CSN_GPIO_Port GPIOA
+#define SPI_IRQ_Pin GPIO_PIN_0
+#define SPI_IRQ_GPIO_Port GPIOB
+#define SPI_CE_Pin GPIO_PIN_10
+#define SPI_CE_GPIO_Port GPIOB
 #define KEY2_Input_Pin GPIO_PIN_12
 #define KEY2_Input_GPIO_Port GPIOB
 #define IIC_SCL_Pin GPIO_PIN_13

@@ -12,40 +12,16 @@ Node_t* rootNode;
 #include "main.h"
 #include "LED.h"
 #include "Remote_ADC.h"
+#include "My_Display.h"
 /* 用户自定义头文件区域结束 */
 
-/**
- * @brief 模拟遥控器 ADC 显示函数
- *
- * 模拟显示模拟遥控器的 ADC 值。
- * x128 y64 OLED 显示区域有限，只显示部分信息。
- */
-void Remote_ADC_DisplayFunc()
-{
-	myOLED_Clear();
-	char L_X_Str[20];
-	char L_Y_Str[20];
-	char R_X_Str[20];
-	char R_Y_Str[20];
-	
-	snprintf(L_X_Str, sizeof(L_X_Str), "%d", Left_x_axis);
-	snprintf(L_Y_Str, sizeof(L_Y_Str), "%d", Left_y_axis);
-	snprintf(R_X_Str, sizeof(R_X_Str), "%d", Right_x_axis);
-	snprintf(R_Y_Str, sizeof(R_Y_Str), "%d", Right_y_axis);
-	
-	OLED_ShowString(1*6, 3*8, "L_Remote:",OLED_8X8_FULL);
-	OLED_ShowString(1*6, 4*8, L_X_Str,OLED_8X8_FULL);
-	OLED_ShowString((sizeof(L_X_Str)+1)*6, 4*8, L_Y_Str,OLED_8X8_FULL);
-	OLED_ShowString(1*6, 5*8, "R_Remote:",OLED_8X8_FULL);
-	OLED_ShowString(1*6, 6*8, R_X_Str,OLED_8X8_FULL);
-	OLED_ShowString((sizeof(R_X_Str)+1)*6, 6*8, R_Y_Str,OLED_8X8_FULL);
-}
 /**
  * @brief LED 灯翻转函数
  *
  * 切换 GPIOC 13 引脚的电平，实现 LED 灯亮灭切换。
  */
-void LED_TurnFunc(){
+void LED_TurnFunc(void)
+{
 	uint8_t ledState = LED_GetState(Pin1);
 	ledState = !ledState;
 	LED_Toggle(Pin1, ledState);

@@ -40,6 +40,7 @@
 #include "Block.h"
 #include "MenuSelector.h"
 #include "usbd_customhid.h"
+#include "My_Display.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -139,23 +140,14 @@ int main(void)
 //	PrintSelector();
 	Read_joystick(&gamepad_report); //1MS读取遥感数据
 	  
-	OLED_ShowString(0, 0*8, "L_Remote:",OLED_8X8_FULL);
-  OLED_ShowString(0, 2*8, "X:",OLED_8X8_FULL);
-  OLED_ShowString(8*8, 2*8, "Y:",OLED_8X8_FULL);
-  OLED_ShowSignedNum(2*8, 2*8,gamepad_report.left_x,5,OLED_8X8_FULL);
-	OLED_ShowSignedNum(10*8, 2*8,gamepad_report.left_y,5,OLED_8X8_FULL);
-  OLED_ShowString(0, 4*8, "R_Remote:",OLED_8X8_FULL);
-  OLED_ShowString(0, 6*8, "X:",OLED_8X8_FULL);
-  OLED_ShowString(8*8, 6*8, "Y:",OLED_8X8_FULL);
-  OLED_ShowSignedNum(2*8, 6*8,gamepad_report.right_x,5,OLED_8X8_FULL);
-	OLED_ShowSignedNum(10*8, 6*8,gamepad_report.right_y,5,OLED_8X8_FULL);
+  Remote_ADC_DisplayFunc(); //显示遥感数据
 
   if(main_1ms_flag == true) //1ms时序控制
   {
     /*在这里添加1MS的执行代码*/
 
       // 发送HID报告到电脑
-  USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, 
+    USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, 
                      (uint8_t*)&gamepad_report, 
                      sizeof(gamepad_report));
 	  OLED_Update();			//更新OLED显示

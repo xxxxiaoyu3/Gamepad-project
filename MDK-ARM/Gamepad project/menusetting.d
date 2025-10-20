@@ -1,11 +1,11 @@
-.\gamepad project\menusetting.o: ..\Middleware\Yu_UI\MenuSetting.c
-.\gamepad project\menusetting.o: ..\Middleware\Yu_UI\MenuSetting.h
-.\gamepad project\menusetting.o: ..\Middleware\Yu_UI\MenuCore.h
+.\gamepad project\menusetting.o: ..\My_Middleware\Menu_UI\MenuSetting.c
+.\gamepad project\menusetting.o: ..\My_Middleware\Menu_UI\MenuSetting.h
+.\gamepad project\menusetting.o: ..\My_Middleware\Menu_UI\MenuCore.h
 .\gamepad project\menusetting.o: D:\Keil5stm32\ARM\ARMCC\Bin\..\include\stdint.h
-.\gamepad project\menusetting.o: ..\Middleware\Yu_UI\Block.h
+.\gamepad project\menusetting.o: ..\My_Middleware\Menu_UI\Block.h
 .\gamepad project\menusetting.o: D:\Keil5stm32\ARM\ARMCC\Bin\..\include\stdio.h
-.\gamepad project\menusetting.o: ..\Middleware\Yu_UI\MenuSelector.h
-.\gamepad project\menusetting.o: ..\Middleware\Yu_UI\MenuSetting.h
+.\gamepad project\menusetting.o: ..\My_Middleware\Menu_UI\MenuSelector.h
+.\gamepad project\menusetting.o: ..\My_Middleware\Menu_UI\MenuSetting.h
 .\gamepad project\menusetting.o: ../HDL/OLED/Driver/Software_Driver/oled.h
 .\gamepad project\menusetting.o: ../HDL/OLED/Driver/Software_Driver/..\Hardware_Driver\OLED_Driver.h
 .\gamepad project\menusetting.o: D:\Keil5stm32\ARM\ARMCC\Bin\..\include\string.h
@@ -50,3 +50,4 @@
 .\gamepad project\menusetting.o: ../HDL/LED/LED.h
 .\gamepad project\menusetting.o: ../Core/Inc/gpio.h
 .\gamepad project\menusetting.o: ../HDL/Remote_ADC/Remote_ADC.h
+.\gamepad project\menusetting.o: ..\My_Middleware\My_OLED_Dis\My_Display.h

@@ -41,8 +41,8 @@
 .\gamepad project\tim.o: ../HDL/Key/Key.h
 .\gamepad project\tim.o: D:\Keil5stm32\ARM\ARMCC\Bin\..\include\stdio.h
 .\gamepad project\tim.o: ../HDL/Beep/Beep.h
-.\gamepad project\tim.o: ../Middleware/Yu_UI/MenuSelector.h
-.\gamepad project\tim.o: ../Middleware/Yu_UI/MenuSetting.h
-.\gamepad project\tim.o: ../Middleware/Yu_UI/MenuCore.h
-.\gamepad project\tim.o: ../Middleware/Yu_UI/Block.h
-.\gamepad project\tim.o: ../Middleware/Yu_UI/MenuSelector.h
+.\gamepad project\tim.o: ..\My_Middleware\Menu_UI\MenuSelector.h
+.\gamepad project\tim.o: ..\My_Middleware\Menu_UI\MenuSetting.h
+.\gamepad project\tim.o: ..\My_Middleware\Menu_UI\MenuCore.h
+.\gamepad project\tim.o: ..\My_Middleware\Menu_UI\Block.h
+.\gamepad project\tim.o: ..\My_Middleware\Menu_UI\MenuSelector.h
