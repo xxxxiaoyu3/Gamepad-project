@@ -27,6 +27,16 @@ void LED_TurnFunc(void)
 	LED_Toggle(Pin1, ledState);
 }
 
+void LED1_ON(void)
+{
+    LED_Toggle(Pin1, 1);
+}
+
+void LED1_OFF(void)
+{
+    LED_Toggle(Pin1, 0);
+}
+
 /**
  * @brief 菜单系统初始化
  *
@@ -34,18 +44,21 @@ void LED_TurnFunc(void)
  */
 	void MenuInit() {
 	    rootNode = SetNode(DIR_type, "LED", SetBranch(
-	        SetNode(EXE_type, "System", LED_TurnFunc),
-	        SetNode(DIR_type, "Remote_ADC",SetBranch
-			(
-				SetNode(EXE_type, "Remote_ADC", Remote_ADC_DisplayFunc)
-			)),
-	        SetNode(DIR_type, "Speed", SetBranch(
-	            SetNode(EXE_type, "fast", NULL),
-	            SetNode(EXE_type, "slow", NULL)
-	        )),
-	        SetNode(EXE_type, "Root", NULL),
-	        SetNode(EXE_type, "Reset", NULL)
-	    )); // 确保所有括号正确闭合
+        SetNode(DIR_type, "LED       ", SetBranch(
+            SetNode(EXE_type, "LED_ON", LED1_ON),
+            SetNode(EXE_type, "LED_OFF", LED1_OFF)
+        )),
+        SetNode(DIR_type, "Remote_ADC ", SetBranch(
+            SetNode(EXE_type, "Remote_Data", EnterRealTimeData),
+            SetNode(EXE_type, "Remote_UI", EnterJoystickAnimation)
+        )),
+        SetNode(DIR_type, "Speed     ", SetBranch(
+            SetNode(EXE_type, "fast", NULL),
+            SetNode(EXE_type, "slow", NULL)
+        )),
+        SetNode(EXE_type, "Root      ", NULL),
+        SetNode(EXE_type, "Reset     ", NULL)
+    ));// 确保所有括号正确闭合
 	
 	    Selector = rootNode->pointer;
 	}

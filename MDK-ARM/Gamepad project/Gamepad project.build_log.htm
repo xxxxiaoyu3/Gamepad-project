@@ -3,54 +3,67 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.36.0.0
-Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 11 Çñ¹úÔ£, 1, LIC=PE7DL-0NL5P-56EQ2-92VXE-C8LHL-BAFC1
+IDE-Version: ¦ÌVision V5.40.0.0
+Copyright (C) 2024 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 123, 1, LIC=YA39H-W3G1C-MMT9I-TP8BZ-Q16V5-DPPTM
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.36.0.0
-Toolchain Path:  D:\Keil5stm32\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 7 (build 960)
-Assembler:       Armasm.exe V5.06 update 7 (build 960)
-Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
-Library Manager: ArmAr.exe V5.06 update 7 (build 960)
-Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
-CPU DLL:         SARMCM3.DLL V5.36.0.0
-Dialog DLL:      DCM.DLL V1.17.3.0
-Target DLL:      CMSIS_AGDI.dll V1.33.0.0
-Dialog DLL:      TCM.DLL V1.53.0.0
+Toolchain:       MDK-ARM Plus  Version: 5.40.0.3
+Toolchain Path:  C:\APP\Keil\Core\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.22
+Assembler:       Armasm.exe V6.22
+Linker/Locator:  ArmLink.exe V6.22
+Library Manager: ArmAr.exe V6.22
+Hex Converter:   FromElf.exe V6.22
+CPU DLL:         SARMCM3.DLL V5.40.0.3
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      CMSIS_AGDI.dll V1.33.18.0
+Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-E:\Project_Keil5\Gamepad project\MDK-ARM\Gamepad project.uvprojx
-Project File Date:  10/18/2025
+e:\Project_Keil5\Gamepad project\MDK-ARM\Gamepad project.uvprojx
+Project File Date:  04/03/2026
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Keil5stm32\ARM\ARMCC\Bin'
+*** Using Compiler 'V6.22', folder: 'C:\APP\Keil\Core\ARM\ARMCLANG\Bin'
 Build target 'Gamepad project'
-".\Gamepad project\Gamepad project.axf" - 0 Error(s), 0 Warning(s).
+../Core/Src/tim.c(26): warning: In file included from...
+../HDL/Key\Key.h(9): warning: In file included from...
+../HDL/Remote_ADC\Remote_ADC.h(24): warning: 'packed' attribute ignored [-Wignored-attributes]
+   24 | typedef __packed struct {
+      |         ^
+../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_def.h(115): note: expanded from macro '__packed'
+  115 | #define __packed  __attribute__((packed))
+      |                                  ^
+1 warning generated.
+compiling tim.c...
+linking...
+Program Size: Code=34648 RO-data=7496 RW-data=412 ZI-data=9860  
+FromELF: creating hex file...
+".\Gamepad project\Gamepad project.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
-                ARM.CMSIS.5.8.0
+                https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
+                ARM::CMSIS@6.1.0
                 CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.5.0
+   * Component: CORE Version: 6.1.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.2.0.pack
-                Keil.STM32F1xx_DFP.2.2.0
+                Keil::STM32F1xx_DFP@2.2.0
                 STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  .\RTE\_Gamepad_project
-  D:\Keil5stm32\ARM\CMSIS\5.8.0\CMSIS\Core\Include
-  D:\Keil5stm32\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+  ./RTE/_Gamepad_project
+  C:/APP/Keil/Pack/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+  C:/APP/Keil/Pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.5.0
-Build Time Elapsed:  00:00:00
+   * Component: ARM::CMSIS:CORE@6.1.0
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

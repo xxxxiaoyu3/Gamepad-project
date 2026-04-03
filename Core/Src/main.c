@@ -127,56 +127,59 @@ int main(void)
 	HAL_Delay(600);		//为了开机特效，人为Delay
 
 
-  /* USER CODE END 2 */
+   /* USER CODE END 2 */
 
   /* Infinite loop */
+  
+  /* 遥感校准 */
+  Start_Joystick_Calibration();
+  while (Is_Joystick_Calibration_Complete() == false)
+  {
+    Auto_Joystick_Calibration();
+    Remote_ADC_Joystick_Dis();
+    if(main_1ms_flag == true)
+    {
+        OLED_Update();
+        USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS,(uint8_t*)&gamepad_report,sizeof(gamepad_report));
+        main_1ms_flag = false;
+    }
+    OLED_Clear();
+  }
   /* USER CODE BEGIN WHILE */
-  OLED_Clear();
-
-//	OLED_Clear();
-      
   while (1)
   {
-//	PrintSelector();
-	Read_joystick(&gamepad_report); //1MS读取遥感数据
-	  
-  Remote_ADC_DisplayFunc(); //显示遥感数据
+    DisplayState state = GetDisplayState();   // 获取当前显示状态
 
-  if(main_1ms_flag == true) //1ms时序控制
-  {
-    /*在这里添加1MS的执行代码*/
+    switch (state) {				                  // 根据显示状态对应显示画面
+        case DISPLAY_MENU:
+            PrintSelector();
+            break;
 
-      // 发送HID报告到电脑
-    USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, 
-                     (uint8_t*)&gamepad_report, 
-                     sizeof(gamepad_report));
-	  OLED_Update();			//更新OLED显示
-    main_1ms_flag = false;  // 清除标志位
-  }
+        case DISPLAY_REALTIME:
+            Remote_ADC_DisplayFunc();
+            break;
 
+        case DISPLAY_ANIMATION:
+            Remote_ADC_Joystick_Dis();
+            break;
+    }
 
-
-
-
-
-
-
-
+    if(main_1ms_flag == true)
+    {
+        USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS,(uint8_t*)&gamepad_report,sizeof(gamepad_report));
+        OLED_Update();
+        main_1ms_flag = false;
+    }
     /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-
   }
 
-  /* USER CODE END 3 */
-}
+  /* USER CODE END WHILE */
+}  // ← 这是main函数的闭合括号！
 
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+
 void SystemClock_Config(void)
 {
+	
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
@@ -226,7 +229,6 @@ bool User_Init(void) //用户功能代码初始化
 	Beep_Init();
 	Key_Init();
 	Remote_ADC_Init();
-	
 	MenuInit();	      //菜单初始化
 	
   return true;
@@ -269,3 +271,4 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+

@@ -4,6 +4,9 @@
 
 // 当前菜单选择器指针，全局变量
 NodeBranch_t* Selector;
+// 显示状态控制
+static DisplayState currentDisplay = DISPLAY_MENU;
+static uint8_t inSubPage = 0;
 
 /**
  * @brief 向上移动菜单选择
@@ -55,6 +58,7 @@ void SelectINorRUN(void) {
  * 如果存在父节点，则切换到父菜单。
  */
 void SelectOut(void) {
+	ReturnToMainMenu();
 	if (Selector->parentNode == NULL) return;
 	Node_t* nodeParent = Selector->parentNode;
 	if (nodeParent->parentPointer == NULL) return;
@@ -79,6 +83,7 @@ void PrintSelector() {
 	static uint16_t blk_length = 0;	// 用于记录窗口列表长度变化
 	NodeBranch_t* selector = Selector; // 当前活动分支
 	if (selector == NULL) return;     // 防护：没有活动分支则直接返回
+	if (inSubPage) return;  // 如果在子页面，不显示菜单
 
 	block_t* blk = &selector->block;   // 引用本分支的窗口控制块
 	/* 窗口长度变化时清屏并更新长度
@@ -116,4 +121,45 @@ void PrintSelector() {
 		/* 移动到下一个节点继续输出 */
 		node = node->nextNode;
 	}
+}
+
+/**
+ * @brief 进入实时数据显示
+ */
+void EnterRealTimeData(void) {
+	currentDisplay = DISPLAY_REALTIME;
+	inSubPage = 1;
+	myOLED_Clear();
+}
+
+/**
+ * @brief 进入摇杆动画
+ */
+void EnterJoystickAnimation(void) {
+	currentDisplay = DISPLAY_ANIMATION;
+	inSubPage = 1;
+	myOLED_Clear();
+}
+
+/**
+ * @brief 返回主菜单
+ */
+void ReturnToMainMenu(void) {
+	currentDisplay = DISPLAY_MENU;
+	inSubPage = 0;
+	myOLED_Clear();
+}
+
+/**
+ * @brief 获取当前显示状态
+ */
+DisplayState GetDisplayState(void) {
+	return currentDisplay;
+}
+
+/**
+ * @brief 检查是否在子页面
+ */
+uint8_t IsInSubPage(void) {
+	return inSubPage;
 }

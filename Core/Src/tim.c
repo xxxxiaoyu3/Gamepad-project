@@ -24,6 +24,7 @@
 #include <stdbool.h>
 #include "LED.h"
 #include "Key.h"
+#include "Remote_ADC.h"
 uint16_t System_1MS = 0;
 extern KeyType Read_key;
 bool main_1ms_flag = false;  // 主循环1ms时序控制
@@ -211,11 +212,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       /* 在这里添加定时器3的中断处理代码 */
       System_1MS++; // 1MS计数器加1
       main_1ms_flag = true;  //主循环1ms时序控制
+      Read_joystick(&gamepad_report); //1MS读取遥感数据
       if (System_1MS%20 == 0) // 如果计数器达到20（即20ms）
       {
           // 每20ms执行一次的代码
-				Read_key = Key_Scan(); //扫描按键
-		      Key_Handler(Read_key); //处理按键任务
+          Read_key = Key_Scan(); //扫描按键
+          Key_Handler(Read_key); //处理按键任务
       }
       if (System_1MS%1000 == 0) // 如果计数器达到1000（即1秒）
       {

@@ -1,14 +1,30 @@
 #include "Remote_ADC.h"
 
 // 左右摇杆的校准数据
-static JoystickCalData left_joystick_cal = {0, 4095, 0, 4095, 2048, 2048};
-static JoystickCalData right_joystick_cal = {0, 4095, 0, 4095, 2048, 2048};
-static JoystickCalState cal_state = JOYSTICK_CAL_INACTIVE;
+JoystickCalData left_joystick_cal = {0, 4095, 0, 4095, 2048, 2048};
+JoystickCalData right_joystick_cal = {0, 4095, 0, 4095, 2048, 2048};
+JoystickCalState cal_state = JOYSTICK_CAL_INACTIVE;
 
 // 用于防抖的计数器
 static uint16_t cal_stable_counter = 0;
-static uint16_t cal_stable_threshold = 50; // 需要稳定的采样次数
+static uint16_t cal_stable_threshold = 10; // 需要稳定的采样次数
 
+Gamepad_Report_t gamepad_report;
+void User_ADC_Init(void)
+{
+    //Add User's GPIO code here.
+    //The CubeMX I'm using has already been configured, so I won't add it here.
+}
+void Remote_ADC_Init(void)
+{
+    User_ADC_Init();
+    // 初始化游戏手柄报告
+    memset(&gamepad_report, 0, sizeof(gamepad_report));
+    gamepad_report.left_x = 128;   // 摇杆居中
+    gamepad_report.left_y = 128;
+    gamepad_report.right_x = 128;
+    gamepad_report.right_y = 128;
+}
 /**
  * @brief 开始摇杆校准过程
  */
@@ -165,20 +181,27 @@ const char* Get_Calibration_Step_Info(void) {
             return "Press to start calibration";
     }
 }
+/**
+ * @brief 获取当前校准状态
+ * @return cal_state 枚举值
+ */
+JoystickCalState Get_Calibration_State(void) {
+    return cal_state;
+}
 
 /**
  * @brief 检查校准是否正在进行
- * @return 1-正在进行，0-未进行
+ * @return ture-正在进行，false-未进行
  */
-uint8_t Is_Joystick_Calibrating(void) {
+bool Is_Joystick_Calibrating(void) {
     return (cal_state != JOYSTICK_CAL_INACTIVE && cal_state != JOYSTICK_CAL_COMPLETE);
 }
 
 /**
  * @brief 检查校准是否完成
- * @return 1-已完成，0-未完成
+ * @return ture-已完成，false-未完成
  */
-uint8_t Is_Joystick_Calibration_Complete(void) {
+bool Is_Joystick_Calibration_Complete(void) {
     return (cal_state == JOYSTICK_CAL_COMPLETE);
 }
 

@@ -1,5 +1,7 @@
 #include "Key.h"
 
+#define Key_MOVE_SPEED 5		// 遥感控制菜单延迟时间
+
 // 按键端口数组，依次对应四个按键
 static GPIO_TypeDef* const Key_PORTS[KEY_COUNT] = {
     Key1_PORT, Key2_PORT, Key3_PORT, Key4_PORT, Key5_PORT, Key6_PORT
@@ -17,7 +19,7 @@ typedef enum {
     KEY_PRESSED       // 已按下状态
 } KeyState;
 
-//
+uint16_t Key_MOVE_TIME=Key_MOVE_SPEED;		//遥感控制菜单延迟
 
 // 每个按键的当前状态
 static KeyState key_state[KEY_COUNT] = {KEY_IDLE};
@@ -95,33 +97,68 @@ KeyType Key_Scan(void)
 // 按键任务处理函数(这里处理按键按下后要做什么)
 void Key_Handler(KeyType Read_key)
 {
+	if(Is_Joystick_Calibration_Complete() == true)			//遥感控制菜单上下移动,只有过了校准阶段才能用遥感控制菜单
+	{
+        if(GetDisplayState() == DISPLAY_MENU)               // 如果当前显示状态为菜单的时候，才能用遥感控制菜单
+        {
+            if(gamepad_report.left_y <= 20) // 左摇杆向上移动，菜单上移
+            {
+                Key_MOVE_TIME--;
+                if(Key_MOVE_TIME == 0)
+                {
+                    SelectUP();
+                    Beep_Toggle(ON);
+                    Key_MOVE_TIME=Key_MOVE_SPEED;
+                }
+            }else if(gamepad_report.left_y >= 240) // 左摇杆向下移动，菜单下移
+            {
+                Key_MOVE_TIME--;
+                if(Key_MOVE_TIME == 0)
+                {
+                    SelectDOWN();
+                    Beep_Toggle(ON);
+                    Key_MOVE_TIME=Key_MOVE_SPEED;
+                }
+            }else
+            {
+                Key_MOVE_TIME=Key_MOVE_SPEED;
+                Beep_Toggle(OFF);
+            }
+        }
+	}
+	
     switch (Read_key) // 根据按键类型执行不同操作
     {
     case KEY_UP:
         /* code */
-        SelectUP();
+        //SelectUP();
+        gamepad_report.buttons = 0X01;
         break;
     case KEY_DOWN:
         /* code */
-        SelectDOWN();
+        //SelectDOWN();
+        gamepad_report.buttons = 0X02;
         break;
     case KEY_LEFT:
         /* code */
-
+        gamepad_report.buttons = 0X04;
         break;
     case KEY_RIGHT:
         /* code */
-
+        gamepad_report.buttons = 0X08;
         break;
     case KEY_ENTER:
         /* code */
         SelectINorRUN();
+        gamepad_report.buttons = 0X10;
         break;
 	case KEY_CANCEL:
         /* code */
         SelectOut();
+        gamepad_report.buttons = 0X20;
         break;
     default:
+        gamepad_report.buttons = 0;     // 无按键按下
         break;
     }
 }

@@ -1,0 +1,15 @@
+CompileFlags:
+  Add:
+    - -Inull/include
+    - -Inull/include/libcxx
+    - -IC:\APP\Keil/include
+    - -IC:\APP\Keil/include/libcxx
+    - -IC:\APP\Keil\Core\UV4/include
+    - -IC:\APP\Keil\Core\UV4/include/libcxx
+    - -IC:\APP\Keil\Core\ARM/include
+    - -IC:\APP\Keil\Core\ARM/include/libcxx
+    - -IC:\APP\Keil\Core\ARM\ARMCLANG/include
+    - -IC:\APP\Keil\Core\ARM\ARMCLANG/include/libcxx
+  Remove: []
+  CompilationDatabase: ./build/Gamepad project
+  Compiler: C:\APP\Keil\Core\ARM\ARMCLANG\bin\armclang.exe

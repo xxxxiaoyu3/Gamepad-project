@@ -11,5 +11,6 @@
 
 
 void Remote_ADC_DisplayFunc(void);
+void Remote_ADC_Joystick_Dis(void);
 
 #endif

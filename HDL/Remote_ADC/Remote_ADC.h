@@ -7,6 +7,7 @@
 #include "adc.h"
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 
 
 /*********定义遥感模式**********/
@@ -15,8 +16,8 @@
 #define REMOTE_MODE 0
 
 // 校准阈值定义
-#define CAL_THRESHOLD_MIN 100     // 最小值阈值
-#define CAL_THRESHOLD_MAX 4000    // 最大值阈值
+#define CAL_THRESHOLD_MIN 800     // 最小值阈值
+#define CAL_THRESHOLD_MAX 3200    // 最大值阈值
 #define CAL_THRESHOLD_CENTER_LOW 1800  // 中心值低阈值
 #define CAL_THRESHOLD_CENTER_HIGH 2200 // 中心值高阈值
 
@@ -40,19 +41,31 @@ typedef struct {
 
 // 校准状态枚举
 typedef enum {
-    JOYSTICK_CAL_INACTIVE,
-    JOYSTICK_CAL_LEFT_MIN,
-    JOYSTICK_CAL_LEFT_MAX,
-    JOYSTICK_CAL_LEFT_CENTER,
-    JOYSTICK_CAL_RIGHT_MIN,
-    JOYSTICK_CAL_RIGHT_MAX,
-    JOYSTICK_CAL_RIGHT_CENTER,
-    JOYSTICK_CAL_COMPLETE
+    JOYSTICK_CAL_INACTIVE,         // 未激活状态
+    JOYSTICK_CAL_LEFT_MIN,         // 左摇杆X最小值
+    JOYSTICK_CAL_LEFT_MAX,         // 左摇杆X最大值
+    JOYSTICK_CAL_LEFT_CENTER,      // 左摇杆X中心值
+    JOYSTICK_CAL_RIGHT_MIN,        // 右摇杆X最小值
+    JOYSTICK_CAL_RIGHT_MAX,        // 右摇杆X最大值
+    JOYSTICK_CAL_RIGHT_CENTER,     // 右摇杆X中心值
+    JOYSTICK_CAL_COMPLETE          // 校准完成
 } JoystickCalState;
 
 extern int16_t Left_x_axis, Left_y_axis, Right_x_axis, Right_y_axis;        //定时转换数据
 extern Gamepad_Report_t gamepad_report;
+extern JoystickCalState cal_state;
+extern JoystickCalData left_joystick_cal;
+extern JoystickCalData right_joystick_cal;
 
 void Remote_ADC_Init(void);
+void Start_Joystick_Calibration(void);
+void Auto_Joystick_Calibration(void);
+const char* Get_Calibration_Step_Info(void);
+JoystickCalState Get_Calibration_State(void);
+bool Is_Joystick_Calibrating(void);
+bool Is_Joystick_Calibration_Complete(void);
+void Reset_Joystick_Calibration_State(void);
+void Reset_Joystick_Calibration(void);
 void Read_joystick(Gamepad_Report_t *report);
+
 #endif

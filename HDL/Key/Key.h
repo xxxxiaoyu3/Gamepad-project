@@ -6,7 +6,7 @@
 #include "led.h"
 #include "Beep.h"
 #include "MenuSelector.h"
-
+#include "Remote_ADC.h"
 // 按键数量 Key Count
 #define KEY_COUNT 6
 
